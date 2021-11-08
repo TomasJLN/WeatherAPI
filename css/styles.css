@@ -1,0 +1,203 @@
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    html {
+        height: 100%;
+        width: 100%;
+    }
+    
+    body {
+        min-width: 390px;
+        height: 630px;
+        margin: 0 auto;
+        background-color: black;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+    }
+    
+    #theVideo {
+        position: fixed;
+        min-height: 100%;
+        min-width: 100%;
+        object-fit: cover;
+        left: 0;
+        bottom: 0;
+        opacity: 0.7;
+    }
+    
+    #location {
+        position: fixed;
+        left: 0;
+        right: 0;
+        height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 2rem;
+        gap: 1rem;
+    }
+    
+    #searchLocation {
+        text-transform: uppercase;
+        text-align: center;
+        position: fixed;
+        top: 6rem;
+        left: 0;
+        right: 0;
+        display: block;
+        width: 260px;
+        height: 2rem;
+        display: flex;
+        margin: auto;
+        color: tomato;
+        border-radius: 10px;
+        border-style: none;
+        opacity: 60%;
+    }
+    
+    .hiden {
+        visibility: hidden;
+    }
+    /* DATOS TIEMPO */
+    
+    #temp-data {
+        position: fixed;
+        margin: 0 auto;
+        top: 10rem;
+        left: 0;
+        right: 0;
+        display: grid;
+        grid-template: 'temp' 80px 'icon-temp' 60px 'tMax' auto 'tMin' auto/ 1fr;
+        justify-items: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    #icon-location {
+        color: white;
+    }
+    
+    #temp-data h2 {
+        grid-area: temp;
+        align-self: center;
+        font-size: 4rem;
+    }
+    
+    #temp-data span {
+        grid-area: icon-temp;
+    }
+    
+    #tMax,
+    #tMin {
+        font-size: 1.2rem;
+    }
+    
+    #tMax {
+        grid-area: tMax;
+    }
+    
+    #tMin {
+        grid-area: tMin
+    }
+    /* DATOS DIA / HORA */
+    
+    #date-data {
+        position: fixed;
+        margin: 0 auto;
+        top: 30rem;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        flex-grow: 1;
+        gap: 1rem;
+        font-size: 1.2rem;
+    }
+    
+    #temp-data h2,
+    #location,
+    #tMin,
+    #tMax,
+    #currentDate,
+    #timer {
+        text-shadow: 1px 1px 3px black;
+    }
+    
+    #timer {
+        margin: 0.5rem 0 1.5rem;
+        font-size: 2.5rem;
+    }
+    /* FOOTER */
+    
+    footer {
+        position: fixed;
+        margin: 0 auto;
+        bottom: 1vh;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        font-size: 0.8rem;
+    }
+    
+    #add {
+        display: none;
+    }
+    
+    @media (min-height: 900px) {
+        #add {
+            position: fixed;
+            display: flex;
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            bottom: 3vh;
+            right: 0;
+            left: 0;
+        }
+        .transition-in {
+            animation-name: fadeOut;
+            animation-duration: 3s;
+            animation-timing-function: linear;
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    }
+    
+    @media (min-height: 1025px) {
+        #add {
+            position: fixed;
+            display: flex;
+            margin: 0 auto;
+            width: 600px;
+            height: 600px;
+            bottom: 1vh;
+            right: 0;
+            left: 0;
+        }
+        .transition-in {
+            animation-name: fadeOut;
+            animation-duration: 3s;
+            animation-timing-function: linear;
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    }
