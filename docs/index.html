@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <video src="./img/bg2dia.mp4" autoplay muted loop id="theVideo"></video>
+    <header>
+        <div id="location">
+            <i class="material-icons" role="button">add_location</i>
+            <h1>LOCATION</h1>
+        </div>
+        <input type="text" name="location" id="searchLocation" class="hiden" placeholder="Introduce ciudad" autofocus autocomplete="off" />
+    </header>
+    <main>
+        <div id="temp-data">
+            <h2>TEMP º</h2>
+            <span id="icon">icon</span>
+            <p id="tMax">N/A</p>
+            <p id="tMin">N/A</p>
+        </div>
+        <div id="date-data">
+            <p id="currentDate">N/A</p>
+            <p id="timer">N/A</p>
+        </div>
+    </main>
+    <footer>
+        <video id='add' src="" type='video/mp4' preload='metadata' autoplay muted></video> Datos proporcionados por Accuweather y blablabla</footer>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
