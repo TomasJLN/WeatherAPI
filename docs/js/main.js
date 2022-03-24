@@ -1,30 +1,29 @@
-'use strict';
+"use strict";
 
 const { body } = document;
-const btnLocation = body.querySelector('.material-icons');
-const inputSearch = body.querySelector('#searchLocation');
-const temp = body.querySelector('#temp-data h2');
-const tmax = body.querySelector('#tMax');
-const tmin = body.querySelector('#tMin');
-const iconTemp = body.querySelector('#icon');
-const dateData = document.querySelector('#currentDate');
-const timeData = document.querySelector('#timer');
-const backgroundVideo = document.querySelector('#theVideo');
-const cityName = body.querySelector('#location h1');
+const btnLocation = body.querySelector(".material-icons");
+const inputSearch = body.querySelector("#searchLocation");
+const temp = body.querySelector("#temp-data h2");
+const tmax = body.querySelector("#tMax");
+const tmin = body.querySelector("#tMin");
+const iconTemp = body.querySelector("#icon");
+const dateData = document.querySelector("#currentDate");
+const timeData = document.querySelector("#timer");
+const backgroundVideo = document.querySelector("#theVideo");
+const cityName = body.querySelector("#location h1");
 let time;
 
 //Adds arrays
 const summerAdds = [
-  '../adds/01_sum_leroy.mp4',
+  "./adds/03_win_starbucks.mp4",
   // '../adds/02_sum_once.mp4',
-  // '../adds/03_sum_Cocacola.mp4',
+  //"../adds/03_sum_Cocacola.mp4",
 ];
 const winterAdds = [
-  '../adds/01_win_colacao.mp4',
+  "./adds/01_win_colacao.mp4",
   // '../adds/02_win_pizza.mp4',
-  '../adds/03_win_starbucks.mp4',
   // '../adds/04_win_McDonalds.mp4',
-  '../adds/05_win_GALLINA BLANCA.mp4',
+  "./adds/05_win_GALLINA BLANCA.mp4",
 ];
 
 //Get current month to select Add array
@@ -40,15 +39,15 @@ const videoCount = videosSeason.length;
 let i = 0;
 
 //Event Listener current video play at end
-document.querySelector('#add').addEventListener('ended', playVideos);
+document.querySelector("#add").addEventListener("ended", playVideos);
 
 //Start playing 1º video
 playAdd(0);
 
 //Reset index (i) when reach last video
 function playVideos() {
-  const videoAdd = document.querySelector('#add');
-  videoAdd.classList.remove('transition-in');
+  const videoAdd = document.querySelector("#add");
+  videoAdd.classList.remove("transition-in");
   i++;
   if (i === videoCount) {
     i = 0;
@@ -60,12 +59,12 @@ function playVideos() {
 
 //Play video selected src
 function playAdd(numAdd) {
-  const videoAdd = document.querySelector('#add');
-  videoAdd.setAttribute('src', videosSeason[numAdd]);
+  const videoAdd = document.querySelector("#add");
+  videoAdd.setAttribute("src", videosSeason[numAdd]);
   setTimeout(() => {
     let test = (videoAdd.duration - 1) * 1000;
     setTimeout(() => {
-      videoAdd.classList.add('transition-in');
+      videoAdd.classList.add("transition-in");
     }, test);
   }, 50);
   videoAdd.autoplay = true;
@@ -74,34 +73,34 @@ function playAdd(numAdd) {
 //
 
 //Get localstorage value if exists else default value 'Coruña'
-let weatherLocation = localStorage.getItem('weatherLocation');
-weatherLocation = weatherLocation ? weatherLocation : 'A Coruña, ES';
+let weatherLocation = localStorage.getItem("weatherLocation");
+weatherLocation = weatherLocation ? weatherLocation : "A Coruña, ES";
 
 //Select dayparting from ico describe day (d) /night (n)
-let dayParting = '01d';
+let dayParting = "01d";
 
 //INFO API
 const api = {
-  key: '2ad566c839ede1eaf20067101ffbf686',
-  base: 'https://api.openweathermap.org/data/2.5/',
+  key: "2ad566c839ede1eaf20067101ffbf686",
+  base: "https://api.openweathermap.org/data/2.5/",
 };
 
 //When DOM is loaded
-window.addEventListener('DOMContentLoaded', () => getResults(weatherLocation));
+window.addEventListener("DOMContentLoaded", () => getResults(weatherLocation));
 
 //Show input to change city
-btnLocation.addEventListener('click', () => {
-  inputSearch.classList.toggle('hiden');
+btnLocation.addEventListener("click", () => {
+  inputSearch.classList.toggle("hiden");
   inputSearch.focus();
 });
 
 //Change city and hiden input after press [enter]
-inputSearch.addEventListener('keypress', (e) => {
-  if (e.keyCode === 13 && !inputSearch.classList.contains('hiden')) {
+inputSearch.addEventListener("keypress", (e) => {
+  if (e.keyCode === 13 && !inputSearch.classList.contains("hiden")) {
     weatherLocation = inputSearch.value;
     getResults(weatherLocation);
-    inputSearch.value = '';
-    inputSearch.classList.toggle('hiden');
+    inputSearch.value = "";
+    inputSearch.classList.toggle("hiden");
   }
 });
 
@@ -119,10 +118,10 @@ function getResults(query) {
       const { icon, main } = data.weather[0];
       dayParting = icon.slice(-1);
       //If error
-      if (data.cod === '404' || data.cod === '400')
+      if (data.cod === "404" || data.cod === "400")
         cityName.textContent = data.message;
       else {
-        localStorage.setItem('weatherLocation', weatherLocation);
+        localStorage.setItem("weatherLocation", weatherLocation);
         cityName.textContent = data.name;
         temp.textContent = `${tempe.toFixed(1)} ℃`;
         iconTemp.innerHTML = `<img src='http://openweathermap.org/img/wn/${icon}@4x.png'>`;
@@ -134,30 +133,30 @@ function getResults(query) {
 
 //Lapse time to show date
 const currentDate = setInterval(() => {
-  const date = new Date().toLocaleDateString('es-ES', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+  const date = new Date().toLocaleDateString("es-ES", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
   });
   dateData.innerHTML = date.toUpperCase();
 }, 1000);
 
 //Lapse time to show time
 const currentTime = setInterval(() => {
-  const date = new Date().toLocaleTimeString('es-ES', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
+  const date = new Date().toLocaleTimeString("es-ES", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
   });
 
-  if (dayParting === 'd') {
-    if (backgroundVideo.getAttribute('src') !== './img/bg2dia.mp4') {
-      backgroundVideo.setAttribute('src', './img/bg2dia.mp4');
+  if (dayParting === "d") {
+    if (backgroundVideo.getAttribute("src") !== "./img/bg2dia.mp4") {
+      backgroundVideo.setAttribute("src", "./img/bg2dia.mp4");
     }
   } else {
-    if (backgroundVideo.getAttribute('src') !== './img/bg2noche.mp4') {
-      backgroundVideo.setAttribute('src', './img/bg2noche.mp4');
+    if (backgroundVideo.getAttribute("src") !== "./img/bg2noche.mp4") {
+      backgroundVideo.setAttribute("src", "./img/bg2noche.mp4");
     }
   }
   timeData.innerHTML = date.toUpperCase();
